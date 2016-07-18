@@ -3,7 +3,19 @@
 
 <form action="#" method="post">
 {% csrf_token %}
-	Your word: <br />
-	<input type="text" name="word" /> <br />
-<input type="submit" name="Translate" />
+	Translate: <input type="text" name="word" placeholder="Your word" /> <br>
+	From <input list="inlang">
+	<datalist id="inlang">
+		<option value="eng-000">
+		<option value="eng-001">
+	</datalist>
+	to <input list="outlang">
+	<datalist id="outlang">
+		<option value="eng-000">
+		<option value="eng-001">
+	</datalist>
+	<br>
+
+
+<input type="submit" name="Translate!" />
 </form>
