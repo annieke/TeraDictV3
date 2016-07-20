@@ -20,3 +20,7 @@ function panlexQuery(url, data) {
 		type: "POST"
 	});
 }
+
+function findTranslation() { 
+	// use translate(exp, inlang, outlang) helper function
+}
