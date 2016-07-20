@@ -11,19 +11,19 @@ $(document).ready(function () {
 	// 	});
 	// });
 
-	panlexQuery('/ex', { uid: "eng-000", tt: "hi" })
-	.done(function (data) {
-		data.result.forEach(function (ex) {
-			$('#form').append(ex.ex);
-		});
-	});
+	// panlexQuery('/ex', { uid: "eng-000", tt: "hi" })
+	// .done(function (data) {
+	// 	data.result.forEach(function (ex) {
+	// 		$('#form').append(ex.ex);
+	// 	});
+	// });
 
-	panlexQuery('/ex', { trex: 435977, uid: "cmn-000", include: "trq", sort: "trq desc", limit: 1 })
-	.done(function (data) {
-		data.result.forEach(function (ex) {
-			$('#form').append(ex.tt);
-		}); 
-	});
+	// panlexQuery('/ex', { trex: 435977, uid: "cmn-000", include: "trq", sort: "trq desc", limit: 1 })
+	// .done(function (data) {
+	// 	data.result.forEach(function (ex) {
+	// 		$('#form').append(ex.tt);
+	// 	}); 
+	// });
 
 });
 
@@ -40,26 +40,57 @@ function findTranslation() {
 	var word = $("#word").val();
 	var inlang = $("#lang1").val();
 	var outlang = $("#lang2").val();
-	var translation = translate(word, inlang, outlang);
-	$('#result').text(word + " in " + outlang + " is " + translation); 
-}
 
-function translate(word, inlang, outlang) {
-	var data1 = { uid: inlang, tt: word };
 	var wordID; 
-	panlexQuery('/ex', data1)
+	panlexQuery('/ex', { uid: inlang, tt: word })
 	.done(function (data) {
 		data.result.forEach(function (ex) {
 			wordID = ex.ex;
 		});
+	})
+	.done(function() {
+		panlexQuery('/ex', { trex: wordID, uid: outlang, include: "trq", sort: "trq desc", limit: 1 })
+		.done(function (data) {
+			data.result.forEach(function (ex) {
+				var translation = ex.tt; 
+				$('#result').text(word + " in " + outlang + " is " + translation); 
+			}); 
+		})
 	});
-	var data2 = { trex: wordID, uid: outlang, include: "trq", sort: "trq desc", limit: 1 }; 
-	var translation;
-	panlexQuery('/ex', data2)
-	.done(function (data) {
-		data.result.forEach(function (ex) {
-			translation = ex.tt; 
-		}); 
-	});
-	return translation; 
+
+
+	// panlexQuery('/ex', { trex: wordID, uid: outlang, include: "trq", sort: "trq desc", limit: 1 })
+	// .done(function (data) {
+	// 	data.result.forEach(function (ex) {
+	// 		var translation = ex.tt; 
+	// 		$('#result').text(word + " in " + outlang + " is " + translation); 
+	// 	}); 
+	// });
+
+
+	// translate(word, inlang, outlang)
+	// .done(function (data) {
+	// 	$('#result').text(word + " in " + outlang + " is " + data); 
+	// });
+
 }
+
+// function translate(word, inlang, outlang) {
+// 	// var data1 = { uid: inlang, tt: word };
+// 	var wordID; 
+// 	panlexQuery('/ex', { uid: inlang, tt: word })
+// 	.done(function (data) {
+// 		data.result.forEach(function (ex) {
+// 			wordID = ex.ex;
+// 		});
+// 	});
+// 	// var data2 = { trex: wordID, uid: outlang, include: "trq", sort: "trq desc", limit: 1 }; 
+// 	var translation;
+// 	panlexQuery('/ex', { trex: wordID, uid: outlang, include: "trq", sort: "trq desc", limit: 1 })
+// 	.done(function (data) {
+// 		data.result.forEach(function (ex) {
+// 			translation = ex.tt; 
+// 		}); 
+// 	});
+// 	return translation; 
+// }
