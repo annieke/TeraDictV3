@@ -1,1 +1,0 @@
-default_app_config = 'TeraDictV3.apps.Teradictv3Config'

@@ -3,28 +3,6 @@ $(document).ready(function () {
 		var target = $(e.target);
 		$.post('/set', { param: target.attr('list'), value: target.val(), csrfmiddlewaretoken: $('[name="csrfmiddlewaretoken"]').val() });
 	});
-
-	// panlexQuery('/lv', { lc: "eng", sort: "vc" })
-	// .done(function (data) {
-	// 	data.result.forEach(function (lv) {
-	// 		$('#form').append(lv.uid + ' ' + lv.tt + '<br>');
-	// 	});
-	// });
-
-	// panlexQuery('/ex', { uid: "eng-000", tt: "hi" })
-	// .done(function (data) {
-	// 	data.result.forEach(function (ex) {
-	// 		$('#form').append(ex.ex);
-	// 	});
-	// });
-
-	// panlexQuery('/ex', { trex: 435977, uid: "cmn-000", include: "trq", sort: "trq desc", limit: 1 })
-	// .done(function (data) {
-	// 	data.result.forEach(function (ex) {
-	// 		$('#form').append(ex.tt);
-	// 	}); 
-	// });
-
 });
 
 function panlexQuery(url, data) {

@@ -11,11 +11,11 @@
 <form onsubmit="findTranslation(); return false;" id="form">
 {% csrf_token %}
 	Translate: <input type="text" id ="word" name="word" placeholder="Your word" /> <br>
-	From <input type="text" id="lang1" list="inlang" class="lang" value="{{ inlang }}">
+	From <input type="text" id="lang1" list="inlang" class="lang" placeholder="eng-000" value="{{ inlang }}">
 	<datalist id="inlang">
 	{% include "TeraDictV3/options.html" %}
 	</datalist>
-	to <input type="text" id="lang2" list="outlang" class="lang" value="{{ outlang }}">
+	to <input type="text" id="lang2" list="outlang" class="lang" placeholder="eng-000" value="{{ outlang }}">
 	<datalist id="outlang">
 	{% include "TeraDictV3/options.html" %}
 	</datalist>
